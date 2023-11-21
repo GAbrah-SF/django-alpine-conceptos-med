@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1 class="mt-4 text-center fw-bold fst-italic">{{ h1 }}</h1>
+    <div class="container mt-5">
+        <button style="margin: 0 auto; display: block" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormConcepto">Agregar nuevo concepto</button>
+        {% include 'modals/form.html' %}
+        {% include 'table.html' %}
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/get_materias.js' %}"></script>
+    <script src="{% static 'js/get_unidades.js' %}"></script>
+    <script src="{% static 'js/create_object.js' %}"></script>
+    <script src="{% static 'js/paginate_table.js' %}"></script>
+    <script src="{% static 'js/clean_form.js' %}"></script>
+    <script src="{% static 'js/update_object.js' %}"></script>
+    <script src="{% static 'js/delete_object.js' %}"></script>
+{% endblock %}

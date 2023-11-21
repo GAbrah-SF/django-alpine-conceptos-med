@@ -1,0 +1,55 @@
+<!-- Modal para agregar nuevo Concepto -->
+<div class="modal fade" id="modalFormConcepto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ h1_form }}</h1>
+                <button type="button" class="btn-close bg-danger close_modal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="inputConcepto" class="form-label fw-bold">Concepto:</label>
+                        <input type="text" id="inputConcepto" x-model="dataForm.inputConcepto" class="form-control">
+                    </div>
+                    <div class="mb-4">
+                        <label for="significado" class="form-label fw-bold">Significado:</label>
+                        <textarea class="form-control form-textarea" id="significado" style="height: 250px" x-model="dataForm.inputSignificado"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <div class="col-md-5" style="margin: 0 auto; display: block;">
+                            <select id="selectBimestre" x-model="dataForm.selectBimestre" class="form-select text-center" aria-label="Large select example" @change="getMaterias">
+                                <option selected value="">{{ selected_bimestre }}</option>
+                                {% for bimestre in bimestres %}
+                                    <option value="{{ bimestre }}">{{ bimestre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="selectMateria" class="form-label fw-bold">Materia:</label>
+                        <select id="selectMateria" x-model="dataForm.selectMateria" class="form-select" @change="getUnidades">
+                            <option selected value="">{{ selected }}</option>
+                            <template x-for="item in listaMaterias" :key="item.id">
+                                <option x-text="`${item.materia}.`" :value="item.id"></option>
+                            </template>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="selectUnidad" class="form-label fw-bold">Unidad:</label>
+                        <select id="selectUnidad" x-model="dataForm.selectUnidad" class="form-select">
+                            <option selected>{{ selected }}</option>
+                            <template x-for="item in listaUnidades" :key="item.id">
+                                <option x-text="`${item.unidad}.`" :value="item.id"></option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" @click="cleanForm(dataForm)" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" @click="sendData">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

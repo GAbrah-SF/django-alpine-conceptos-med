@@ -1,0 +1,59 @@
+<!-- Modal para actualizar un Concepto -->
+<div class="modal fade" id="modalUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bolder">
+                    <span x-text="dataUpdate.id"></span>. <span x-text="dataUpdate.concepto"></span>
+                </h1>
+                <button type="button" class="btn-close bg-danger xModal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form x-data="renderObjectsUpdate">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="conceptoUpdate" class="form-label fw-bold">Concepto:</label>
+                        <input id="conceptoUpdate" type="text" x-model="dataUpdate.concepto" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="significadoUpdate" class="form-label fw-bold">Significado:</label>
+                        <textarea id="significadoUpdate" class="form-control form-textarea" x-model="dataUpdate.significado"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <div class="col-md-5" style="margin: 0 auto; display: block;">
+                            <select id="selectBimestreUpdate" x-model="dataUpdate.bimestre" class="form-select text-center"
+                                    @change="getMateriasUpdate(urlRelativeGetMaterias, dataUpdate.bimestre, urlRelativeGetUnidades, dataUpdate.materia)">
+                                <option value="">{{ selected_bimestre }}</option>
+                                {% for bimestre in bimestres %}
+                                    <option value="{{ bimestre }}" @click="cleanUnidades()">{{ bimestre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="selectMateriaUpdate" class="form-label fw-bold">Materia:</label>
+                        <select id="selectMateriaUpdate" x-model="dataUpdate.materia" class="form-select"
+                                @change="getUnidadesUpdate(urlRelativeGetUnidades, dataUpdate.materia)">
+                            <option value="">{{ selected }}</option>
+                            <template x-for="item in listaMateriasUpdate" :key="item.id">
+                                <option :selected="dataUpdate.materia == item.id" x-text="`${item.materia}.`" :value="item.id"></option>
+                            </template>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="selectUnidadUpdate" class="form-label fw-bold">Unidad:</label>
+                        <select id="selectUnidadUpdate" x-model="dataUpdate.unidad" class="form-select">
+                            <option value="">{{ selected }}</option>
+                            <template x-for="item in listaUnidadesUpdate" :key="item.id">
+                                <option :selected="dataUpdate.unidad == item.id" x-text="`${item.unidad}.`" :value="item.id"></option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger closeModalUpdate_" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="updateData_" type="button" class="btn btn-success" @click="updateConcepto(dataUpdate)">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

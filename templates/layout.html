@@ -1,0 +1,28 @@
+{% load bootstrap5 %}
+{% load static %}
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <script src="{% static 'js/alpinejs@3.13.2.min.js' %}" defer></script> <!-- Agrega el script de Alpine.js -->
+        <script src="{% static 'js/axios.min.js' %}"></script> <!-- Agrega el script de Axios -->
+        <link rel="stylesheet" href="{% static 'sweetalert2/sweetalert2.min.css' %}">
+        <link rel="stylesheet" href="{% static 'sweetalert2/dark-theme.css' %}">
+        <script src="{% static 'sweetalert2/sweetalert2.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style_forms.css' %}">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body x-data="{ dataForm: { inputConcepto: null, inputSignificado: null, selectBimestre: null, selectMateria: null, selectUnidad: null },
+                    urlRelativeGuardar: '{% url 'guardar' %}', responseData: null, listaMaterias: [], listaUnidades: [],
+                    urlRelativeActualizar: '{% url 'actualizar' %}', urlRelativeGetMaterias: '{% url 'mostrar_materias' %}',
+                    urlRelativeGetUnidades: '{% url 'mostrar_unidades' %}', urlRelativeGetConceptos: '{% url 'mostrar_conceptos' %}',
+                    dataUpdate: {id: null, concepto: null, significado: null, bimestre: null, materia: null, unidad: null} }">
+        {% block content %}{% endblock %}
+        {% block js %}{% endblock %}
+    </body>
+</html>
