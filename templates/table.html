@@ -1,6 +1,6 @@
 <div x-data="paginationLogic" x-init="getConceptos(urlRelativeGetConceptos)">
-    <div class="col row mt-3">
-        <div class="row col-md-6">
+    <div class="row mt-4 mb-3">
+        <div class="row col-md-4 p-0 m-0">
             <div class="d-flex align-items-center">
                 <h5>Mostrando</h5>
                 <input type="text" class="form-control text-center ms-2 me-2" style="width: 55px;" minlength="1" maxlength="3"
@@ -9,10 +9,20 @@
                 <h5 x-text="searchTerm == 1 ? 'concepto:' : 'conceptos:'"></h5>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4 p-0 m-0">
             {% include 'paginate_table.html' %}
         </div>
+        <div class="col-md-4 d-flex align-items-center justify-content-end">
+            <div class="d-flex align-items-center justify-content-end">
+                <input type="text" class="form-control text-center search-input" placeholder="Buscar concepto"
+                       aria-label="Buscar concepto" aria-describedby="search-button" title="Buscar concepto">
+                <button class="btn btn-success m-0" type="button">
+                    <i class="bi bi-search"></i></button>
+
+            </div>
+        </div>
     </div>
+
     <table class="table table-dark table-striped">
         <thead>
         <tr>

@@ -24,7 +24,7 @@
                                     @change="getMateriasUpdate(urlRelativeGetMaterias, dataUpdate.bimestre, urlRelativeGetUnidades, dataUpdate.materia)">
                                 <option value="">{{ selected_bimestre }}</option>
                                 {% for bimestre in bimestres %}
-                                    <option value="{{ bimestre }}" @click="cleanUnidades()">{{ bimestre }}</option>
+                                    <option value="{{ bimestre }}" @click="cleanUnidades">{{ bimestre }}</option>
                                 {% endfor %}
                             </select>
                         </div>
