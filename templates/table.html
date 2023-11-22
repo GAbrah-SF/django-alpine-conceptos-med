@@ -4,46 +4,55 @@
             <div class="d-flex align-items-center">
                 <h5>Mostrando</h5>
                 <input type="text" class="form-control text-center ms-2 me-2" style="width: 55px;" minlength="1" maxlength="3"
-                       x-model="searchTerm" :input="handleSearchInput" @click="searchTerm = ''" :keyup.debounce.300ms="showNConcepts">
-                <h5>conceptos:</h5>
+                       x-model="searchTerm" :input="handleSearchInput" @click="searchTerm = ''"
+                       :keyup.debounce.100ms="showNConcepts">
+                <h5 x-text="searchTerm == 1 ? 'concepto:' : 'conceptos:'"></h5>
             </div>
         </div>
         <div class="col-md-6">
             {% include 'paginate_table.html' %}
         </div>
     </div>
-
     <table class="table table-dark table-striped">
         <thead>
         <tr>
-            <th scope="col" class="align-middle col-md-4">CONCEPTO</th>
-            <th scope="col" class="align-middle">SIGNIFICADO</th>
-            <th scope="col" class="align-middle text-center col-md-1">ACCIONES</th>
+            <th scope="col" class="align-middle text-center cursor-pointer col-md-1" @click="sortData('id')"
+                title="Ordenar por número">#
+                <span x-show="sortBy === 'id' && sortDir === '▲'"><i class="bi bi-caret-up-fill ms-2"></i></span>
+                <span x-show="sortBy === 'id' && sortDir === '▼'"><i class="bi bi-caret-down-fill ms-2"></i></span>
+            </th>
+            <th scope="col" class="align-middle cursor-pointer col-md-3" @click="sortData('concepto')"
+                title="Ordenar por concepto">CONCEPTO
+                <span x-show="sortBy === 'concepto' && sortDir === '▲'"><i class="bi bi-caret-up-fill ms-3"></i></span>
+                <span x-show="sortBy === 'concepto' && sortDir === '▼'"><i class="bi bi-caret-down-fill ms-3"></i></span>
+            </th>
+            <th scope="col" class="align-middle col-md-5">SIGNIFICADO</th>
+            <th scope="col" class="align-middle text-center col-md-2">ACCIONES</th>
         </tr>
         </thead>
         <tbody x-show="listConceptos.length > 0">
-            <template x-for="item in paginatedData()" :key="item.id">
-                <tr :title="`Bimestre: ${item.bimestre}.\nUnidad: ${item.show_unidad_name}.\nMateria: ${item.show_materia_name}.`">
-                    <td x-text="item.concepto" class="align-middle col-md-3 fw-bold fs-5"></td>
-                    <td x-text="item.significado" class="align-middle col-md-6 td-text-justify"></td>
-                    <td class="align-middle col-md-3 text-center td-text-justify">
-                        <button type="button" class="btn btn-info m-1" data-bs-toggle="modal" data-bs-target="#modalUpdate"
-                                @click="openModalUpdate(dataUpdate = {id: item.id,
+        <template x-for="item in paginatedData()" :key="item.id">
+            <tr :title="`Bimestre: ${item.bimestre}.\nUnidad: ${item.show_unidad_name}.\nMateria: ${item.show_materia_name}.`">
+                <td x-text="item.id" class="align-middle text-center fw-bold fs-5"></td>
+                <td x-text="item.concepto" class="align-middle fw-bold fs-5"></td>
+                <td x-text="item.significado" class="align-middle td-text-justify"></td>
+                <td class="align-middle text-center td-text-justify">
+                    <button type="button" class="btn btn-info m-1" data-bs-toggle="modal" data-bs-target="#modalUpdate"
+                            @click="openModalUpdate(dataUpdate = {id: item.id,
                                                                       concepto: item.concepto,
                                                                       significado: item.significado,
                                                                       bimestre: item.bimestre,
                                                                       materia: item.materia,
                                                                       unidad: item.unidad
                                                                       })"
-                                :title="`Actualizar: ${item.concepto}`"><i class="bi bi-pencil-square"></i></button>
-                        <button type="button" class="btn btn-danger m-1" :title="`Eliminar: ${item.concepto}`"
-                                @click="deleteData(item.id, item.concepto)">
-                            <i class="bi bi-trash"></i></button>
-                    </td>
-                </tr>
-            </template>
+                            :title="`Actualizar: ${item.concepto}`"><i class="bi bi-pencil-square"></i></button>
+                    <button type="button" class="btn btn-danger m-1" :title="`Eliminar: ${item.concepto}`"
+                            @click="deleteData(item.id, item.concepto)">
+                        <i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+        </template>
         </tbody>
     </table>
-
     {% include 'modals/update_form.html' %} <!-- Modal para actualizar datos de los Conceptos-->
 </div>

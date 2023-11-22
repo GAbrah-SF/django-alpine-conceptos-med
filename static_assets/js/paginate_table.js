@@ -1,8 +1,9 @@
 const paginationLogic = {
-    listConceptos: [], currentPage: '', itemsPerPage: '', searchTerm: 4,
+    listConceptos: [], // contiene los datos de la tabla.
+    currentPage: '', itemsPerPage: '', searchTerm: 4,
     getConceptos(url) {
         axios.get(url).then(response => {
-            this.listConceptos = response.data.reverse()
+            this.listConceptos = response.data
 
         }).catch(error => { // Manejar errores
             if (error.response) { // La solicitud fue hecha, pero el servidor respondió con un código de estado que no está en el rango 200
@@ -17,6 +18,7 @@ const paginationLogic = {
             }
         })
     },
+
     handleSearchInput() {
         // Verificar si 'this.searchTerm' es una cadena antes de reemplazar caracteres no numéricos
         if (typeof this.searchTerm === 'string') {
@@ -53,6 +55,7 @@ const paginationLogic = {
             this.searchTerm = 10
         }
     },
+
     paginatedData() {
         const startIndex = (this.currentPage - 1) * this.itemsPerPage
         const endIndex = startIndex + this.itemsPerPage
@@ -70,6 +73,26 @@ const paginationLogic = {
     },
     totalPages() {
         return Math.ceil(this.listConceptos.length / this.itemsPerPage)
+    },
+
+    sortBy: '', // almacena la columna por la cual se está ordenando.
+    sortDir: '▲', // almacena la dirección del ordenamiento.
+    sortData(column) { // es la función que se llama cuando el usuario hace clic en el encabezado de una columna para ordenar los datos según esa columna.
+        if (column === this.sortBy) {
+            this.sortDir = this.sortDir === '▲' ? '▼' : '▲'
+
+        } else {
+            this.sortBy = column
+            this.sortDir = '▲'
+        }
+
+        this.listConceptos = this.listConceptos.sort((a, b) => {
+            if (this.sortDir === '▲') {
+                return a[column] > b[column] ? 1 : -1
+            } else {
+                return a[column] < b[column] ? 1 : -1
+            }
+        })
     }
 }
 
