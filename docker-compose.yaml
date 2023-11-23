@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "2023:2023"
+    command: python manage.py runserver 0.0.0.0:2023
+    volumes:
+      - .:/code
