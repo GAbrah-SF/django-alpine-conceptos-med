@@ -1,5 +1,6 @@
 const paginationLogic = {
     listConceptos: [], // contiene los datos de la tabla.
+    searchConcept: '',
     currentPage: '', itemsPerPage: '', searchTerm: 4,
     getConceptos(url) {
         axios.get(url).then(response => {

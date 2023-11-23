@@ -1,12 +1,16 @@
+function selectValue(elementId, value) {
+    const selectElement = document.getElementById(elementId)
+    const optionSelect = selectElement.querySelector(`[value="${value}"]`)
+
+    if (optionSelect) {
+        optionSelect.selected = true
+        selectElement.dispatchEvent(new Event('change'))
+    }
+}
+
 function cleanForm(dataForm) {
-    const selectBimestre = document.getElementById('selectBimestre')
-    const selectMateria = document.getElementById('selectMateria')
-
-    selectBimestre.selectedIndex = 0
-    selectMateria.selectedIndex = 0
-
-    selectBimestre.dispatchEvent(new Event('change'))
-    selectMateria.dispatchEvent(new Event('change'))
+    selectValue('selectBimestre', "")
+    selectValue('selectMateria', "")
 
     Object.keys(dataForm).forEach(key => {
         dataForm[key] = ''

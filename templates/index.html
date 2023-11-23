@@ -5,7 +5,8 @@
 {% block content %}
     <h1 class="mt-4 text-center fw-bold fst-italic">{{ h1 }}</h1>
     <div class="container mt-5">
-        <button style="margin: 0 auto; display: block" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormConcepto">Agregar nuevo concepto</button>
+        <button style="margin: 0 auto; display: block" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#modalFormConcepto" title="Agregar nuevo concepto">Nuevo concepto</button>
         {% include 'modals/form.html' %}
         {% include 'table.html' %}
     </div>
@@ -16,6 +17,7 @@
     <script src="{% static 'js/get_unidades.js' %}"></script>
     <script src="{% static 'js/create_object.js' %}"></script>
     <script src="{% static 'js/paginate_table.js' %}"></script>
+    <script src="{% static 'js/search_object.js' %}"></script>
     <script src="{% static 'js/clean_modal_form.js' %}"></script>
     <script src="{% static 'js/open_modal_update.js' %}"></script>
     <script src="{% static 'js/update_object.js' %}"></script>

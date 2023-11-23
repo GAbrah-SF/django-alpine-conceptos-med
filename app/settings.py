@@ -26,7 +26,7 @@ SECRET_KEY = config['LLAVE']['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 DJANGO_APPS = [
@@ -38,9 +38,9 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = ['bootstrap5', 'rest_framework']
-
 LOCAL_APPS = ['materias', 'conceptos']
+
+THIRD_PARTY_APPS = ['bootstrap5', 'rest_framework']
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

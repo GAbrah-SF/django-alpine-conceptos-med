@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.views import View
 from django.views.generic import TemplateView
 from materias.models import Materia, Unidad
+from django.db.models import Q
 from .models import Concepto
 from app.settings import MAESTRIA_NAME
 
@@ -25,7 +26,12 @@ class Index(TemplateView):
 class ConceptosView(View):
     def get(self, request):
         try:
+            search = self.request.GET.get("search")
             conceptos = Concepto.objects.all()
+
+            if search:
+                conceptos = Concepto.objects.filter(Q(concepto__icontains=search) | Q(id__icontains=search))
+
             serialized_data = []
             for concepto in conceptos:
                 serialized_data.append({

@@ -1,13 +1,3 @@
-function selectValue(elementId, value) {
-    const selectElement = document.getElementById(elementId)
-    const optionSelect = selectElement.querySelector(`[value="${value}"]`)
-
-    if (optionSelect) {
-        optionSelect.selected = true
-        selectElement.dispatchEvent(new Event('change'))
-    }
-}
-
 function openModalUpdate(dataTable) {
     selectValue('selectBimestreUpdate', dataTable.bimestre)
     selectValue('selectMateriaUpdate', dataTable.materia)
