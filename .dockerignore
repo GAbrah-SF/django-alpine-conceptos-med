@@ -1,0 +1,6 @@
+test/
+excel/
+.idea/
+.venv/
+.git
+.gitignore
