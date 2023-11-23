@@ -1,4 +1,5 @@
 import configparser
 
 config = configparser.RawConfigParser()
-config.read('config.ini')
+with open('config.ini', encoding='utf-8') as file:
+    config.read_file(file)

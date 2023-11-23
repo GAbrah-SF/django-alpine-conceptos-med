@@ -132,4 +132,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MAESTRIA_NAME = "Maestría en Educación y Docencia"
+MAESTRIA_NAME = config['CARRERA']['MAESTRIA_NAME']
