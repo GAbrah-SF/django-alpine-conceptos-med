@@ -2,8 +2,8 @@ function sendData() {
     let data = { // Obtener los valores de los elementos HTML y construir el objeto de datos
         "concepto": this.dataForm.inputConcepto,
         "significado": this.dataForm.inputSignificado,
-        "unidad": this.dataForm.selectMateria,
-        "materia": this.dataForm.selectUnidad,
+        "materia": this.dataForm.selectMateria,
+        "unidad": this.dataForm.selectUnidad,
     }
 
     axios.post(this.urlRelativeGuardar, data, { // Enviar la solicitud Axios
