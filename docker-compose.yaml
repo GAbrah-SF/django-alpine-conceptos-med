@@ -15,10 +15,11 @@ services:
   db:
     image: postgres:latest
     volumes:
-      - ../pg_data:/var/lib/postgresql/data/
+      - pg_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
-      - POSTGRES_DB=conceptos_principales
+      POSTGRES_DB: conceptos_principales
+      POSTGRES_USER: gabriel
+      POSTGRES_PASSWORD: admin
     ports:
       - "5432:5432"
     healthcheck:
