@@ -5,10 +5,16 @@
 {% block content %}
     <h1 class="mt-4 text-center fw-bold fst-italic">{{ h1 }}</h1>
     <div class="container mt-5">
-        <button style="margin: 0 auto; display: block" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#modalFormConcepto" title="Agregar nuevo concepto">Nuevo concepto</button>
+        <button style="margin: 0 auto; display: block" type="button" class="btn btn-primary" data-bs-toggle="modal" title="Agregar nuevo concepto"
+                data-bs-target="#modalFormConcepto">Nuevo concepto</button>
         {% include 'modals/form.html' %}
-        {% include 'table.html' %}
+
+        <div x-data="paginationLogic" x-init="getConceptos(urlRelativeGetConceptos)" >
+            <h3 x-show="listConceptos.length === 0" class="text-center mt-4 fw-bold"> No hay conceptos, da click en el botón "Nuevo concepto"</h3>
+            <div x-show="listConceptos.length > 0">
+                {% include 'table.html' %}
+            </div>
+        </div>
     </div>
 {% endblock %}
 

@@ -8,6 +8,8 @@ class Concepto(models.Model):
     significado = models.TextField()
     materia = models.ForeignKey(Materia, null=False, on_delete=models.CASCADE)
     unidad = models.ForeignKey(Unidad, null=False, on_delete=models.CASCADE)
+    created = models.DateField(auto_now_add=True)  # Se establece automáticamente en la fecha actual al crear el objeto
+    updated = models.DateField(auto_now=True)  # Se actualiza a la fecha actual cada vez que se guarda el objeto
 
     class Meta:
         verbose_name_plural = "Conceptos"
