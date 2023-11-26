@@ -6,8 +6,8 @@ from materias.models import Materia, Unidad
 class Concepto(models.Model):
     concepto = models.CharField(max_length=40)
     significado = models.TextField()
-    unidad = models.ForeignKey(Unidad, null=False, on_delete=models.CASCADE)
     materia = models.ForeignKey(Materia, null=False, on_delete=models.CASCADE)
+    unidad = models.ForeignKey(Unidad, null=False, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Conceptos"
