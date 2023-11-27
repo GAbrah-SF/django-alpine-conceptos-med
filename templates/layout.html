@@ -22,10 +22,14 @@
     </head>
     <body x-data="{ dataForm: { inputConcepto: null, inputSignificado: null, selectBimestre: null, selectMateria: null, selectUnidad: null },
                     urlRelativeGuardar: '{% url 'guardar' %}', responseData: null, listaMaterias: [], listaUnidades: [],
+                    listaConceptos: [], searchConcept: '',
                     urlRelativeActualizar: '{% url 'actualizar' %}', urlRelativeGetMaterias: '{% url 'mostrar_materias' %}',
                     urlRelativeGetUnidades: '{% url 'mostrar_unidades' %}', urlRelativeGetConceptos: '{% url 'mostrar_conceptos' %}',
                     dataUpdate: {id: null, concepto: null, significado: null, bimestre: null, materia: null, unidad: null} }">
-        {% block content %}{% endblock %}
+        {% include 'menu.html' %}
+        <div class="container" style="margin-top: 4rem !important;">
+            {% block content %}{% endblock %}
+        </div>
         {% block js %}{% endblock %}
     </body>
 </html>

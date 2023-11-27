@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1 class="text-center fw-bold fst-italic">{{ h1 }}</h1>
+    <button class="btn btn-primary mt-4" style="margin: 0 auto; display: block" type="button" data-bs-toggle="modal"
+            title="Agregar nuevo concepto" data-bs-target="#modalFormConcepto">Nuevo concepto</button>
+    {% include 'modals/form.html' %}
+
+    <div x-data="paginationLogic" x-init="getConceptos(urlRelativeGetConceptos)">
+        <div class="mt-4" x-show="listaConceptos.length === 0">
+            <h3 class="text-center fw-bold">No hay conceptos todavía, da click en el botón de arriba</h3>
+        </div>
+        <div x-show="listaConceptos.length > 0">
+            {% include 'table.html' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/get_materias.js' %}"></script>
+    <script src="{% static 'js/get_unidades.js' %}"></script>
+    <script src="{% static 'js/create_object.js' %}"></script>
+    <script src="{% static 'js/paginate_table.js' %}"></script>
+    <script src="{% static 'js/search_object.js' %}"></script>
+    <script src="{% static 'js/clean_modal_form.js' %}"></script>
+    <script src="{% static 'js/open_modal_update.js' %}"></script>
+    <script src="{% static 'js/update_object.js' %}"></script>
+    <script src="{% static 'js/delete_object.js' %}"></script>
+{% endblock %}
