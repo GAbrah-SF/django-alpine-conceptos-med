@@ -9,17 +9,8 @@
             <h5 x-text="searchTerm == 1 ? 'concepto:' : 'conceptos:'"></h5>
         </div>
     </div>
-    <div class="col-md-4 p-0 m-0">
+    <div class="col-md-8 d-flex align-items-center justify-content-end">
         {% include 'paginate_table.html' %}
-    </div>
-    <div class="col-md-4 d-flex align-items-center justify-content-end">
-        <div class="d-flex align-items-center justify-content-end">
-            <input type="text" class="form-control text-center search-input" placeholder="Buscar concepto"
-                   x-model="searchConcept" @keyup="searchObject" title="Buscar concepto"
-                   aria-label="Buscar concepto" aria-describedby="search-button">
-            <button class="btn btn-success m-0" type="button" @click="searchObject" title="Buscar concepto">
-                <i class="bi bi-search"></i></button>
-        </div>
     </div>
 </div>
 

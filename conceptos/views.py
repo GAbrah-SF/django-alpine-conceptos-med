@@ -13,6 +13,16 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs):
         context_index = {
+            'title': 'Inicio',
+        }
+        return context_index
+
+
+class ListaConceptos(TemplateView):
+    template_name = 'index_show_conceptos.html'
+
+    def get_context_data(self, **kwargs):
+        context_index = {
             'title': 'Lista de Conceptos',
             'h1': MAESTRIA_NAME,
             'h1_form': 'Nuevo Concepto y Significado',
@@ -23,8 +33,8 @@ class Index(TemplateView):
         return context_index
 
 
-class ConceptosView(View):
-    def get(self, request):
+class TablaConceptosView(View):
+    def get(self, request, *args, **kwargs):
         try:
             search = self.request.GET.get("search")
             conceptos = Concepto.objects.all()
@@ -52,7 +62,7 @@ class ConceptosView(View):
 
 
 class MateriasView(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         bimestre = request.GET.get('bimestre')
 
         if bimestre:
@@ -64,7 +74,7 @@ class MateriasView(View):
 
 
 class UnidadesView(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         materia = request.GET.get('materia')
 
         if materia:

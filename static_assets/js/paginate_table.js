@@ -1,10 +1,8 @@
 const paginationLogic = {
-    listConceptos: [], // contiene los datos de la tabla.
-    searchConcept: '',
     currentPage: '', itemsPerPage: '', searchTerm: 4,
     getConceptos(url) {
         axios.get(url).then(response => {
-            this.listConceptos = response.data
+            this.listaConceptos = response.data
 
         }).catch(error => { // Manejar errores
             if (error.response) { // La solicitud fue hecha, pero el servidor respondió con un código de estado que no está en el rango 200
@@ -60,7 +58,7 @@ const paginationLogic = {
     paginatedData() {
         const startIndex = (this.currentPage - 1) * this.itemsPerPage
         const endIndex = startIndex + this.itemsPerPage
-        return this.listConceptos.slice(startIndex, endIndex)
+        return this.listaConceptos.slice(startIndex, endIndex)
     },
     prevPage() {
         if (this.currentPage > 1) {
@@ -68,12 +66,12 @@ const paginationLogic = {
         }
     },
     nextPage() {
-        if (this.currentPage < Math.ceil(this.listConceptos.length / this.itemsPerPage)) {
+        if (this.currentPage < Math.ceil(this.listaConceptos.length / this.itemsPerPage)) {
             this.currentPage++
         }
     },
     totalPages() {
-        return Math.ceil(this.listConceptos.length / this.itemsPerPage)
+        return Math.ceil(this.listaConceptos.length / this.itemsPerPage)
     },
 
     sortBy: '', // almacena la columna por la cual se está ordenando.
@@ -87,7 +85,7 @@ const paginationLogic = {
             this.sortDir = '▲'
         }
 
-        this.listConceptos = this.listConceptos.sort((a, b) => {
+        this.listaConceptos = this.listaConceptos.sort((a, b) => {
             if (this.sortDir === '▲') {
                 return a[column] > b[column] ? 1 : -1
             } else {
