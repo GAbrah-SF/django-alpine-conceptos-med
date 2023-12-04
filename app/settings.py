@@ -38,7 +38,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-LOCAL_APPS = ['materias', 'conceptos']
+LOCAL_APPS = ['materias', 'conceptos', 'usuarios']
 
 THIRD_PARTY_APPS = ['bootstrap5', 'rest_framework']
 
@@ -131,5 +131,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'usuarios.Usuario'
 
 MAESTRIA_NAME = config['CARRERA']['MAESTRIA_NAME']
