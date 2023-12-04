@@ -1,0 +1,19 @@
+.btn-bd-morado {
+  font-weight: 600;
+  color: white;
+  background-color: #6528e0;
+  border-color: #6528e0; /* Cambia el color del borde al mismo que el fondo */
+}
+
+/* Aplica un color de borde diferente en el hover */
+.btn-bd-morado:hover {
+  background-color: #4300cb;
+  color: white;
+}
+
+/* Otros estilos hover, focus, etc. */
+.btn-bd-morado.btn-check:focus + .btn,
+.btn-bd-morado.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 .25rem rgba(101, 40, 224, 0.5);
+}
