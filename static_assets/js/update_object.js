@@ -22,9 +22,9 @@ function updateData() {
     }).catch(error => { // Manejar errores
         swal.fire({
             position: 'center',
-            icon: error.icon,
+            icon: error.response.data.icon,
             background: "#000",
-            title: error.message,
+            title: error.response.data.message,
             showConfirmButton: false,
             timer: 2500
         })

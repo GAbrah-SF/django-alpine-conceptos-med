@@ -12,4 +12,4 @@ class TablaMateria(admin.ModelAdmin):
 @admin.register(Unidad)
 class TablaUnidad(admin.ModelAdmin):
     list_display = ('id', 'unidad', 'materia')
-    search_fields = ('materia', 'materia')
+    search_fields = ('unidad', 'materia')

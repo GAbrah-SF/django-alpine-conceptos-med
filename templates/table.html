@@ -9,17 +9,8 @@
             <h5 x-text="searchTerm == 1 ? 'concepto:' : 'conceptos:'"></h5>
         </div>
     </div>
-    <div class="col-md-4 p-0 m-0">
+    <div class="col-md-8 d-flex align-items-center justify-content-end">
         {% include 'paginate_table.html' %}
-    </div>
-    <div class="col-md-4 d-flex align-items-center justify-content-end">
-        <div class="d-flex align-items-center justify-content-end">
-            <input type="text" class="form-control text-center search-input" placeholder="Buscar concepto"
-                   x-model="searchConcept" @keyup="searchObject" title="Buscar concepto"
-                   aria-label="Buscar concepto" aria-describedby="search-button">
-            <button class="btn btn-success m-0" type="button" @click="searchObject" title="Buscar concepto">
-                <i class="bi bi-search"></i></button>
-        </div>
     </div>
 </div>
 
@@ -27,7 +18,7 @@
     <thead>
         <tr>
             <th scope="col" class="align-middle text-center cursor-pointer col-md-1" @click="sortData('id')"
-                title="Ordenar por número">#
+                title="Ordenar por número" style="border-top-left-radius: 25px;">#
                 <span x-show="sortBy === 'id' && sortDir === '▲'"><i class="bi bi-caret-up-fill ms-2"></i></span>
                 <span x-show="sortBy === 'id' && sortDir === '▼'"><i class="bi bi-caret-down-fill ms-2"></i></span>
             </th>
@@ -37,7 +28,7 @@
                 <span x-show="sortBy === 'concepto' && sortDir === '▼'"><i class="bi bi-caret-down-fill ms-3"></i></span>
             </th>
             <th scope="col" class="align-middle col-md-5">SIGNIFICADO</th>
-            <th scope="col" class="align-middle text-center col-md-2">ACCIONES</th>
+            <th scope="col" class="align-middle text-center col-md-2" style="border-top-right-radius: 25px;">ACCIONES</th>
         </tr>
     </thead>
     <tbody>
